@@ -1,29 +1,36 @@
 import React from "react";
 import { Button} from "react-bootstrap";
 import {ACTIONS} from '../App.js';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {FaArchive, FaCheck} from 'react-icons/fa'
 
-export default function Todo({ todo, dispatch }) {
+
+export default function Todo({ todo,category, dispatch }) {
   return (
-    <div style={{ margin: "20px" }}>
+    
+      <div style={{ margin: "20px" ,backgroundColor:"#fcd7a8" }}>
       <div
         style={{
-          backgroundColor: todo.complete ? "lightgreen" : "lightblue",
+          backgroundColor: todo.complete ? "lightblue": "#fcd7a8" ,
           borderRadius: "5px",
         }}
         className="p-2  "
       >
-        {todo.name} <span>{todo.category}</span>
+        <div className="wrap-task d-flex pe-4">
+        <div className="pe-4 task-name">{todo.name}</div> <div >{todo.category}</div>
+        </div>
       </div>
-      <Button variant="outline-primary" className="m-1"
+
+
+      <Button variant="outline-none" className="m-1 task-button-green"
       onClick={()=> dispatch({ type: ACTIONS.TOGGLE, payload : {id :todo.id}})}
       >
-        <i className="fa-sharp fa-solid fa-check"></i>
+        <div className="FaCheck"><FaCheck/></div>
       </Button>
-      <Button variant="outline-danger" className="m-1"
+      <Button variant="outline-none" className="m-1 task-button-red"
       onClick={()=> dispatch({ type: ACTIONS.DELETE, payload : {id :todo.id}})}
-        ><i className="fa-sharp fa-solid fa-trash"></i>
+        ><div className="FaArchive"><FaArchive/></div>
       </Button>
     </div>
+    
   );
 }
